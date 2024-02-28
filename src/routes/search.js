@@ -3,9 +3,9 @@ import { apiRequestJson } from "../helpers/apiRequestRawHtml";
 
 const search = new Hono();
 
-search.get("/", async (c) => {
+search.get("/query/:query", async (c) => {
   try {
-    let query = c.req.query("query");
+    let query = c.params.query;
     if (!query) throw new Error("Query param is required");
 
     let data = await apiRequestJson(
